@@ -1,4 +1,12 @@
-﻿using System.Collections;
+﻿/**
+ * \file LeftHandScript.cs
+ * \brief TODO.
+ * \author Alexis Devillard
+ * \version 1.0
+ * \date 03 march 2019
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
