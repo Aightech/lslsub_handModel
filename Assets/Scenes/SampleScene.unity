@@ -287,6 +287,7 @@ GameObject:
   - component: {fileID: 191245175}
   - component: {fileID: 191245174}
   - component: {fileID: 191245173}
+  - component: {fileID: 191245176}
   m_Layer: 0
   m_Name: RightHand
   m_TagString: Untagged
@@ -367,6 +368,24 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 191245171}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &191245176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 191245171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e62f5fc7c669dd40b05027de11f9506, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moment: 0
+  StreamName: Right_Hand
+  StreamType: 
+  tfs: []
+  fingersTf: []
+  lastSample: 
 --- !u!1 &699989354
 GameObject:
   m_ObjectHideFlags: 0
@@ -556,7 +575,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moment: 0
-  StreamName: LabJack
+  StreamName: Left_Hand
   StreamType: 
   tfs: []
   fingersTf: []
@@ -643,6 +662,66 @@ PrefabInstance:
     - target: {fileID: 400054, guid: b610116aaa11a7b40861bc70707e1259, type: 3}
       propertyPath: m_LocalScale.z
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: b610116aaa11a7b40861bc70707e1259, type: 3}
+      propertyPath: m_TagString
+      value: ind
+      objectReference: {fileID: 0}
+    - target: {fileID: 100014, guid: b610116aaa11a7b40861bc70707e1259, type: 3}
+      propertyPath: m_TagString
+      value: mid
+      objectReference: {fileID: 0}
+    - target: {fileID: 100032, guid: b610116aaa11a7b40861bc70707e1259, type: 3}
+      propertyPath: m_TagString
+      value: rin
+      objectReference: {fileID: 0}
+    - target: {fileID: 100040, guid: b610116aaa11a7b40861bc70707e1259, type: 3}
+      propertyPath: m_TagString
+      value: thu
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: b610116aaa11a7b40861bc70707e1259, type: 3}
+      propertyPath: m_TagString
+      value: ind
+      objectReference: {fileID: 0}
+    - target: {fileID: 100016, guid: b610116aaa11a7b40861bc70707e1259, type: 3}
+      propertyPath: m_TagString
+      value: mid
+      objectReference: {fileID: 0}
+    - target: {fileID: 100024, guid: b610116aaa11a7b40861bc70707e1259, type: 3}
+      propertyPath: m_TagString
+      value: pin
+      objectReference: {fileID: 0}
+    - target: {fileID: 100034, guid: b610116aaa11a7b40861bc70707e1259, type: 3}
+      propertyPath: m_TagString
+      value: rin
+      objectReference: {fileID: 0}
+    - target: {fileID: 100042, guid: b610116aaa11a7b40861bc70707e1259, type: 3}
+      propertyPath: m_TagString
+      value: thu
+      objectReference: {fileID: 0}
+    - target: {fileID: 100010, guid: b610116aaa11a7b40861bc70707e1259, type: 3}
+      propertyPath: m_TagString
+      value: ind
+      objectReference: {fileID: 0}
+    - target: {fileID: 100018, guid: b610116aaa11a7b40861bc70707e1259, type: 3}
+      propertyPath: m_TagString
+      value: mid
+      objectReference: {fileID: 0}
+    - target: {fileID: 100026, guid: b610116aaa11a7b40861bc70707e1259, type: 3}
+      propertyPath: m_TagString
+      value: pin
+      objectReference: {fileID: 0}
+    - target: {fileID: 100036, guid: b610116aaa11a7b40861bc70707e1259, type: 3}
+      propertyPath: m_TagString
+      value: rin
+      objectReference: {fileID: 0}
+    - target: {fileID: 100044, guid: b610116aaa11a7b40861bc70707e1259, type: 3}
+      propertyPath: m_TagString
+      value: thu
+      objectReference: {fileID: 0}
+    - target: {fileID: 100028, guid: b610116aaa11a7b40861bc70707e1259, type: 3}
+      propertyPath: m_TagString
+      value: pin
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b610116aaa11a7b40861bc70707e1259, type: 3}

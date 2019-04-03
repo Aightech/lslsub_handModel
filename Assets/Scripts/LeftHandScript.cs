@@ -12,7 +12,6 @@ public class LeftHandScript : AFloatInlet
     private Transform tf;
     public Component[] tfs;
     public List<Transform> fingersTf;
-    public liblsl.StreamInfo[] results;
     public string lastSample = String.Empty;
     private float incMax = 1.5f;
 

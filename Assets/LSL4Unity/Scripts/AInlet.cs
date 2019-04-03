@@ -32,8 +32,9 @@ namespace Assets.LSL4Unity.Scripts.AbstractInlets
 		private int expectedChannels = 0;
 
 		float[] sample;
-		
-		void Start()
+
+
+        void Start()
 		{
 			
 			var expectedStreamHasAName = !StreamName.Equals("");
@@ -61,7 +62,8 @@ namespace Assets.LSL4Unity.Scripts.AbstractInlets
 			StartCoroutine(ResolveExpectedStream());
 
 			AdditionalStart();
-		}
+           
+        }
 		/// <summary>
 		/// Override this method in the subclass to specify what should happen during Start().
 		/// </summary>
@@ -72,12 +74,14 @@ namespace Assets.LSL4Unity.Scripts.AbstractInlets
 
 		IEnumerator ResolveExpectedStream()
 		{
-			var results = resolver.results();
-			yield return new WaitUntil(() => results.Length > 0);
+            results = resolver.results();
 
-			Debug.Log(string.Format("Resolving Stream: {0}", StreamName));
+            Debug.Log(StreamName + " is waiting..");
+            yield return new WaitUntil(() => results.Length > 0);
 
-			inlet = new liblsl.StreamInlet(results[0]);
+            Debug.Log(string.Format("Resolving Stream: {0}", StreamName));
+
+            inlet = new liblsl.StreamInlet(results[0]);
 
 			expectedChannels = inlet.info().channel_count();
 			
@@ -107,10 +111,20 @@ namespace Assets.LSL4Unity.Scripts.AbstractInlets
 			{
 				Debug.LogError("An Error on pulling samples deactivating LSL inlet on...", this);
 				this.enabled = false;
+                inlet = null;
 				Debug.LogException(aex, this);
 			}
+            catch (LSL.liblsl.LostException aex)
+            {
+                Debug.LogError("An Error on pulling samples deactivating LSL inlet on...", this);
+                this.enabled = false;
+                inlet = null;
+                Debug.LogException(aex, this);
+            }
+            
 
-		}
+
+        }
 
 		/// <summary>
 		/// Override this method in the subclass to specify what should happen when samples are available.
@@ -122,7 +136,12 @@ namespace Assets.LSL4Unity.Scripts.AbstractInlets
 		{
 			if (moment == UpdateMoment.FixedUpdate && inlet != null)
 				pullSamples();
-		}
+            else if (inlet == null)
+            {
+                results = resolver.results();
+            }
+
+        }
 
 		void Update()
 		{
@@ -187,7 +206,7 @@ namespace Assets.LSL4Unity.Scripts.AbstractInlets
 
 		IEnumerator ResolveExpectedStream()
 		{
-			var results = resolver.results();
+			results = resolver.results();
 
 			while(inlet == null) {
 

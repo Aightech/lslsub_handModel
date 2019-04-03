@@ -871,6 +871,7 @@ public class liblsl
         {
             IntPtr[] buf = new IntPtr[1024]; 
             int num = dll.lsl_resolver_results(obj,buf,(uint)buf.Length);
+            //Console.WriteLine("Hello World!"+num);
             StreamInfo[] res = new StreamInfo[num];
             for (int k = 0; k < num; k++)
                 res[k] = new StreamInfo(buf[k]);
@@ -915,7 +916,7 @@ public class liblsl
         if (ec < 0)
             switch (ec) {
                 case -1: throw new TimeoutException("The operation failed due to a timeout.");
-                case -2: throw new LostException("The stream has been lost.");
+                case -2: throw new LostException("The stream has been lost."); 
                 case -3: throw new ArgumentException("An argument was incorrectly specified (e.g., wrong format or wrong length).");
                 case -4: throw new InternalException("An internal internal error has occurred.");
                 default: throw new Exception("An unknown error has occurred.");
