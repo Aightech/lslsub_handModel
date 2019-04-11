@@ -32,6 +32,7 @@ namespace Assets.LSL4Unity.Scripts.AbstractInlets
 		private int expectedChannels = 0;
 
 		float[] sample;
+        
 
 
         void Start()
@@ -110,18 +111,20 @@ namespace Assets.LSL4Unity.Scripts.AbstractInlets
 			catch(ArgumentException aex)
 			{
 				Debug.LogError("An Error on pulling samples deactivating LSL inlet on...", this);
-				this.enabled = false;
+				this.enabled = true;
                 inlet = null;
-				Debug.LogException(aex, this);
+                
+                Debug.LogException(aex, this);
 			}
             catch (LSL.liblsl.LostException aex)
             {
                 Debug.LogError("An Error on pulling samples deactivating LSL inlet on...", this);
-                this.enabled = false;
+                this.enabled = true;
                 inlet = null;
+                resolver = new liblsl.ContinuousResolver("name", StreamName);
                 Debug.LogException(aex, this);
             }
-            
+
 
 
         }
@@ -134,11 +137,19 @@ namespace Assets.LSL4Unity.Scripts.AbstractInlets
 
 		void FixedUpdate()
 		{
-			if (moment == UpdateMoment.FixedUpdate && inlet != null)
+
+            
+            if (moment == UpdateMoment.FixedUpdate && inlet != null)
 				pullSamples();
             else if (inlet == null)
             {
                 results = resolver.results();
+                if (results.Length > 0)
+                {
+                    Debug.Log(string.Format("Resolving Stream: {0}", StreamName));
+                    inlet = new liblsl.StreamInlet(results[0]);
+                    expectedChannels = inlet.info().channel_count();
+                }
             }
 
         }

@@ -17,6 +17,16 @@ using Assets.LSL4Unity.Scripts.AbstractInlets;
 
 public class RightHandScript : AFloatInlet
 {
+    //LSL outlet attributes
+    private liblsl.StreamOutlet outlet;
+    private liblsl.StreamInfo streamInfo;
+
+    public string StreamOutName = "Right_Hand";
+    public string StreamOutType = "Hand_Position";
+    public int ChannelCount = 15;
+    //**************//
+
+    //model attribute
     private Transform tf;
     public Component[] tfs;
     public List<Transform> fingersTf;
@@ -27,8 +37,13 @@ public class RightHandScript : AFloatInlet
     private float[] fingersJoints_target = new float[3 * 5];
     private float[] fingersJoints_Max = new float[3 * 5];
     private string[] fingersTags = { "thu", "ind", "mid", "rin", "pin" };
+    //**************//
 
 
+    /**
+    * @brief AdditionalStart The Start function is use by the AFloatInlet 
+    * class so you should not overwrite it. So we initiate the different variable here
+    */
     protected override void AdditionalStart()
     {
         //get all transform of the hand
@@ -44,6 +59,7 @@ public class RightHandScript : AFloatInlet
                 if (ch.tag == tag)
                     fingersTf.Add(ch);
 
+        //put some value and limits to the joint
         for (int i = 0; i < 3 * 5; i++)
         {
             fingersJoints[i] = 0.0f;
@@ -52,34 +68,27 @@ public class RightHandScript : AFloatInlet
         }
         fingersJoints_Max[0] = 20;
         fingersJoints_Max[1] = 40;
+
+        // Start LSL stream to publish the current position of the hand
+        streamInfo = new liblsl.StreamInfo(StreamOutName, StreamOutType, ChannelCount, Time.fixedDeltaTime * 1000);
+        outlet = new liblsl.StreamOutlet(streamInfo);
     }
+
 
     // Update is called once per frame
     void Update()
     {
-        /*t++;
-        float mh = Input.GetAxis("Horizontal");
-        float x = tf.position.x;
-        int f = t / 30;
-        float ang = 2.0f;
-        if ((f / 5) % 2 == 0)
-            ang = -ang;
-        f = f % 5;*/
-
         float dTheta;
         for (int i = 0; i < 3 * 5; i++)
-        {
+        {//for each joints make it closer to the targeting pos
             if (Math.Abs(fingersJoints[i] - fingersJoints_target[i]) > 1)
             {
                 dTheta = (fingersJoints[i] < fingersJoints_target[i]) ? incMax : -incMax;
                 fingersTf[i].Rotate(0.0f, 0.0f, -dTheta);
                 fingersJoints[i] += dTheta;
             }
-            //Debug.Log("Test:" + fingersJoints_target[i].ToString());
-
         }
-        // Debug.Log("Test:" + indexTf.Count.ToString());
-
+        outlet.push_sample(fingersJoints);//publish the position
     }
 
     protected override void Process(float[] newSample, double timeStamp)
@@ -90,9 +99,8 @@ public class RightHandScript : AFloatInlet
 
 
         for (int i = 0; i < 3 * 5; i++)
-        {
             fingersJoints_target[i] = ((i < newSample.Length) ? ((newSample[i] > fingersJoints_Max[i]) ? fingersJoints_Max[i] : newSample[i]) : 0);
-        }
+        
     }
 
 
