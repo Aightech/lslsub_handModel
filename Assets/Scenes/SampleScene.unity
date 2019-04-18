@@ -383,7 +383,7 @@ MonoBehaviour:
   moment: 0
   StreamName: Right_Hand_Command
   StreamType: 
-  StreamOutName: Left_Hand
+  StreamOutName: Right_Hand
   StreamOutType: Hand_Position
   ChannelCount: 15
   tfs: []
