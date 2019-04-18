@@ -16,3 +16,5 @@ To send configuration command you should create an float LSL stream called "Left
 # Credits
 This project was programmed on Unity IDE. Using [LSL4Unity plugin](https://github.com/xfleckx/LSL4Unity) of xfleckx, some modifications where done on "AInlet" class to enable online connection and disconnection when the lsl streams are found or lost.
 The Hand model are the one of [Oculus Rift](https://developer.oculus.com/downloads/package/oculus-hand-models/).
+
+# Author
