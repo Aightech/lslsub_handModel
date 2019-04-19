@@ -32,6 +32,7 @@ namespace Assets.LSL4Unity.Scripts.AbstractInlets
 		private int expectedChannels = 0;
 
 		float[] sample;
+        public bool isConnected = false;
         
 
 
@@ -83,7 +84,7 @@ namespace Assets.LSL4Unity.Scripts.AbstractInlets
             Debug.Log(string.Format("Resolving Stream: {0}", StreamName));
 
             inlet = new liblsl.StreamInlet(results[0]);
-
+            isConnected = true;
 			expectedChannels = inlet.info().channel_count();
 			
 			yield return null;
@@ -113,7 +114,7 @@ namespace Assets.LSL4Unity.Scripts.AbstractInlets
 				Debug.LogError("An Error on pulling samples deactivating LSL inlet on...", this);
 				this.enabled = true;
                 inlet = null;
-                
+                isConnected = true;
                 Debug.LogException(aex, this);
 			}
             catch (LSL.liblsl.LostException aex)
@@ -148,6 +149,7 @@ namespace Assets.LSL4Unity.Scripts.AbstractInlets
                 {
                     Debug.Log(string.Format("Resolving Stream: {0}", StreamName));
                     inlet = new liblsl.StreamInlet(results[0]);
+                    isConnected = true;
                     expectedChannels = inlet.info().channel_count();
                 }
             }

@@ -383,9 +383,17 @@ MonoBehaviour:
   moment: 0
   StreamName: Right_Hand_Command
   StreamType: 
+  isConnected: 0
   StreamOutName: Right_Hand
   StreamOutType: Hand_Position
-  ChannelCount: 15
+  ChannelCount: 6
+  simpleJoints:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
   tfs: []
   fingersTf: []
   lastSample: 
@@ -484,7 +492,6 @@ GameObject:
   - component: {fileID: 783692742}
   - component: {fileID: 783692741}
   - component: {fileID: 783692744}
-  - component: {fileID: 783692745}
   m_Layer: 0
   m_Name: LeftHand
   m_TagString: Untagged
@@ -580,27 +587,19 @@ MonoBehaviour:
   moment: 0
   StreamName: Left_Hand_Command
   StreamType: 
+  isConnected: 0
   StreamOutName: Left_Hand
   StreamOutType: Hand_Position
-  ChannelCount: 15
+  ChannelCount: 6
+  simpleJoints:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
   tfs: []
   fingersTf: []
-  lastSample: 
---- !u!114 &783692745
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 783692739}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1da38a6a9335e8e48af8b17d9c369265, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moment: 0
-  StreamName: Left_Hand
-  StreamType: 
   lastSample: 
 --- !u!1001 &841226402
 PrefabInstance:
