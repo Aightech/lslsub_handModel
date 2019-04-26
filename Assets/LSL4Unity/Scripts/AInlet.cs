@@ -152,7 +152,7 @@ namespace Assets.LSL4Unity.Scripts.AbstractInlets
                 {
                     Debug.Log(string.Format("Resolving Stream: {0}", StreamName));
                     inlet = new liblsl.StreamInlet(results[0]);
-                    isConnected = false;
+                    isConnected = true;
                     expectedChannels = inlet.info().channel_count();
                 }
             }
