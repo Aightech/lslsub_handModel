@@ -91,7 +91,10 @@ public class HandObject : AFloatInlet
         }
         if(isConnected)
         {
+
             outlet.push_sample(fingersJoints);//publish the position
+            Debug.Log(string.Format("Sending ..."));
+
             /*
               only take some of the joint angle 
             simpleJoints[0] = fingersJoints[0];
