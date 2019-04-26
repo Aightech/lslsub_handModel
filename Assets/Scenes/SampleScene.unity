@@ -383,6 +383,7 @@ MonoBehaviour:
   moment: 0
   StreamName: Right_Hand_Command
   StreamType: 
+  isConnected: 0
   StreamOutName: Right_Hand
   StreamOutType: Hand_Position
   ChannelCount: 15
@@ -580,6 +581,7 @@ MonoBehaviour:
   moment: 0
   StreamName: Left_Hand_Command
   StreamType: 
+  isConnected: 0
   StreamOutName: Left_Hand
   StreamOutType: Hand_Position
   ChannelCount: 15
@@ -601,6 +603,7 @@ MonoBehaviour:
   moment: 0
   StreamName: Left_Hand
   StreamType: 
+  isConnected: 0
   lastSample: 
 --- !u!1001 &841226402
 PrefabInstance:

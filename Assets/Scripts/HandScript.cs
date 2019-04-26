@@ -67,7 +67,7 @@ public class HandObject : AFloatInlet
             fingersJoints_target[i] = 0.0f;
             fingersJoints_Max[i] = 60.0f + ((i % 3 == 0) ? 20.0f : 0.0f);
         }
-        fingersJoints_Max[0] = 20;
+        fingersJoints_Max[0] = 40;
         fingersJoints_Max[1] = 40;
 
         // Start LSL stream to publish the current position of the hand
@@ -94,8 +94,10 @@ public class HandObject : AFloatInlet
 
             outlet.push_sample(fingersJoints);//publish the position
             Debug.Log(string.Format("Sending ..."));
-
-            /*
+            Debug.Log(string.Format("[ {0} , {1} , {2} || {3} , {4} , {5} || {6} , {7} , {8} || {9} , {10} , {11} || {12} , {13} , {14} ]",
+                fingersJoints[0], fingersJoints[1], fingersJoints[2], fingersJoints[3], fingersJoints[4], fingersJoints[5], fingersJoints[6], fingersJoints[7],
+                fingersJoints[8], fingersJoints[9], fingersJoints[10], fingersJoints[11], fingersJoints[12], fingersJoints[13], fingersJoints[14]));
+                /*
               only take some of the joint angle 
             simpleJoints[0] = fingersJoints[0];
             simpleJoints[1] = fingersJoints[1];
