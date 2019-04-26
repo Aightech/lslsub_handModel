@@ -114,7 +114,7 @@ namespace Assets.LSL4Unity.Scripts.AbstractInlets
 				Debug.LogError("An Error on pulling samples deactivating LSL inlet on...", this);
 				this.enabled = true;
                 inlet = null;
-                isConnected = true;
+                isConnected = false;
                 Debug.LogException(aex, this);
 			}
             catch (LSL.liblsl.LostException aex)
@@ -122,6 +122,7 @@ namespace Assets.LSL4Unity.Scripts.AbstractInlets
                 Debug.LogError("An Error on pulling samples deactivating LSL inlet on...", this);
                 this.enabled = true;
                 inlet = null;
+                isConnected = false;
                 resolver = new liblsl.ContinuousResolver("name", StreamName);
                 Debug.LogException(aex, this);
             }

@@ -82,7 +82,7 @@ public class HandObject : AFloatInlet
         float dTheta;
         for (int i = 0; i < 3 * 5; i++)
         {//for each joints make it closer to the targeting pos
-            if (Math.Abs(fingersJoints[i] - fingersJoints_target[i]) > 1)
+            if (!Single.IsNaN(fingersJoints_target[i]) && Math.Abs(fingersJoints[i] - fingersJoints_target[i]) > 1)
             {
                 dTheta = (fingersJoints[i] < fingersJoints_target[i]) ? incMax : -incMax;
                 fingersTf[i].Rotate(0.0f, 0.0f, -dTheta);
@@ -92,11 +92,19 @@ public class HandObject : AFloatInlet
         if(isConnected)
         {
             //            outlet.push_sample(fingersJoints);//publish the position
-            //only take some of the joint angle 
-            simpleJoints[0] = fingersJoints[0];
-            simpleJoints[1] = fingersJoints[1];
-            for(int i = 1; i<5; i++)
-                simpleJoints[i] = fingersJoints[i*3];
+            //only take some of the joint angle
+            for(int i = 0; i <2; i++)
+                if(Single.IsNaN(fingersJoints_target[i]))
+                    simpleJoints[i] = Single.NaN;
+                else
+                    simpleJoints[i] = fingersJoints[i];
+
+            for (int i = 1; i<5; i++)
+                if (Single.IsNaN(fingersJoints_target[i*3]))
+                    simpleJoints[i+1] = Single.NaN;
+                else
+                    simpleJoints[i+1] = fingersJoints[i*3];
+            Debug.Log(string.Format("send : [{0} , {1} , {2} , {3} , {4} , {5} ]", simpleJoints[0], simpleJoints[1], simpleJoints[2], simpleJoints[3], simpleJoints[4], simpleJoints[5]));
             outlet.push_sample(simpleJoints);//publish the position
         }
     }
