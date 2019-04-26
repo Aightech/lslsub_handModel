@@ -67,7 +67,7 @@ public class HandObject : AFloatInlet
             fingersJoints_target[i] = 0.0f;
             fingersJoints_Max[i] = 60.0f + ((i % 3 == 0) ? 20.0f : 0.0f);
         }
-        fingersJoints_Max[0] = 20;
+        fingersJoints_Max[0] = 40;
         fingersJoints_Max[1] = 40;
 
         // Start LSL stream to publish the current position of the hand
