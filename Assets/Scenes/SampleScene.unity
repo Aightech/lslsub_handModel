@@ -381,7 +381,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moment: 0
-  StreamName: Left_Hand
+  StreamName: Right_Hand_Command
   StreamType: 
   isConnected: 0
   StreamOutName: Right_Hand
